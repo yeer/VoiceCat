@@ -1,0 +1,8 @@
+transformers==4.46.3
+torch==2.2.2
+numpy<2
+safetensors
+zhconv==1.4.3
+faster-whisper==1.1.1
+sherpa-onnx==1.12.40
+pywebview==5.4

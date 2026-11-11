@@ -1,0 +1,37 @@
+#!/bin/bash
+set -euo pipefail
+HERE="$(cd "$(dirname "$0")" && pwd)"
+SUPPORT="$HOME/Library/Application Support/VoiceCat"
+ROOT=""
+find_root() {
+  local dir="$1"
+  while [[ "$dir" != "/" ]]; do
+    if [[ -f "$dir/sysaudio_stt/__main__.py" && -x "$dir/.venv/bin/python" ]]; then
+      printf '%s' "$dir"
+      return 0
+    fi
+    dir="$(dirname "$dir")"
+  done
+  return 1
+}
+ROOT="$(find_root "$HERE" || true)"
+if [[ -z "$ROOT" && -f "$HERE/../Resources/engine-root" ]]; then
+  ROOT="$(tr -d '\r' < "$HERE/../Resources/engine-root")"
+fi
+if [[ -z "$ROOT" && -f "$SUPPORT/engine-root" ]]; then
+  ROOT="$(tr -d '\r' < "$SUPPORT/engine-root")"
+fi
+if [[ ! -f "$ROOT/sysaudio_stt/__main__.py" || ! -x "$ROOT/.venv/bin/python" ]]; then
+  osascript -e 'display dialog "找不到识别引擎。请先在项目目录执行一次打包，生成独立应用。" buttons {"好"} default button 1'
+  exit 1
+fi
+mkdir -p "$SUPPORT"
+printf '%s\n' "$ROOT" > "$SUPPORT/engine-root"
+BUNDLED="$HERE/sysaudio-stt-desktop"
+if [[ ! -x "$BUNDLED" ]]; then
+  osascript -e 'display dialog "应用里没有桌面程序。请重新打包。" buttons {"好"} default button 1'
+  exit 1
+fi
+export SYSAUDIO_ROOT="$ROOT"
+export SYSAUDIO_DATA="$SUPPORT"
+exec "$BUNDLED"

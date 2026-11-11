@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>CFBundleName</key><string>VoiceCat</string>
+  <key>CFBundleDisplayName</key><string>VoiceCat</string>
+  <key>CFBundleIdentifier</key><string>local.sysaudio-stt</string>
+  <key>CFBundleExecutable</key><string>launch</string>
+  <key>CFBundlePackageType</key><string>APPL</string>
+  <key>CFBundleIconFile</key><string>AppIcon</string>
+  <key>CFBundleVersion</key><string>1.0</string>
+  <key>CFBundleShortVersionString</key><string>1.0</string>
+  <key>LSMinimumSystemVersion</key><string>14.0</string>
+  <key>NSHighResolutionCapable</key><true/>
+  <key>NSAudioCaptureUsageDescription</key><string>用于采集本机正在播放的声音并转写成文字。不采集麦克风。</string>
+  <key>NSScreenCaptureUsageDescription</key><string>进程采集失败时，用已允许的录屏权限听系统混音。不采集麦克风。</string>
+  <key>NSMicrophoneUsageDescription</key><string>本程序不使用麦克风。若系统弹出此提示，可以拒绝。</string>
+</dict>
+</plist>

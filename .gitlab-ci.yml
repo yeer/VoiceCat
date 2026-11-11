@@ -1,0 +1,9 @@
+stages:
+  - test
+
+python:
+  stage: test
+  image: python:3.12
+  script:
+    - python -m py_compile sysaudio_stt/*.py
+    - python -m unittest discover -s tests -v

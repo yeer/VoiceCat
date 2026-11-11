@@ -1,0 +1,22 @@
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+screenlog.*
+*.log
+
+# 本机配置和密钥，不要提交
+llm.toml
+settings.json
+glossary.txt
+polish_prompt.txt
+.env
+.env.*
+
+# 构建产物和本机模型
+dist/
+desktop/target/
+desktop/gen/
+models/
+*.wav
+*.onnx
